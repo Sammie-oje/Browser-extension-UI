@@ -25,8 +25,7 @@
 }
 
 body{
-  background: linear-gradient(180deg, #EBF2FC 0%, #EEF8F9 100%) no-repeat;
-  height: 100%;
+ background: linear-gradient(180deg, #EBF2FC 0%, #EEF8F9 100%) no-repeat;
 }
 
 header{
@@ -40,6 +39,8 @@ header{
   border-radius: 0.5em;
   position: sticky;
   position: -webkit-sticky;
+  top: 0;
+  z-index: 200;
 }
 
 header div{
@@ -69,9 +70,9 @@ section nav a{
   padding: 0.6em 1.2em;
   border-radius: 1.5em;
   color: var(--neutral-700);
-  font: 700 1rem myFont;
+  font: 500 1rem myFont;
   margin-left: 0.4em;
-  box-shadow: 0px 1px 3px var(--neutral-600);
+  border: 1px solid var(--neutral-300);
 }
 
 main{
@@ -86,6 +87,7 @@ main{
   max-width: 85%;
   border-radius: 1em;
   padding: 1em 0;
+  border: 1px solid var(--neutral-300);
 }
 
 .extension-main{
@@ -116,7 +118,7 @@ main{
 
 .remove-btn{
   border: 1px solid var(--neutral-300);
-  background-color: white;
+  background-color: transparent;
   padding: 0.7em 1em;
   border-radius: 1.5em;
   font: 700 0.9rem myFont;
@@ -131,6 +133,7 @@ main{
   display: flex;
   align-items: center;
   padding: 0.2em;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .switch{
@@ -138,6 +141,7 @@ main{
   width: 1.2em;
   height: 1.2em;
   border-radius: 50%;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .active{
@@ -146,4 +150,41 @@ main{
 
 .switch-active{
   transform: translateX(1.4em);
+}
+/*Dark theme*/
+  body.dark{
+    background: linear-gradient(180deg, #040918 0%, #091540 100%); 
+    color: white;
+  }
+
+body.dark header{
+  background-color: var(--neutral-800);
+}
+
+body.dark header div{
+  background-color: var(--neutral-700);
+}
+
+body.dark section h3{
+  color: white;
+}
+
+body.dark section nav a{
+  background-color: var(--neutral-700);
+  color: white;
+  border: 1px solid var(--neutral-600);
+}
+
+body.dark .extension-info{
+  background-color: var(--neutral-700);
+  border: 1px solid var(--neutral-600);
+}
+
+body.dark .remove-btn{
+  color: white;
+  border: 1px solid var(--neutral-600);
+}
+
+body.dark .extension-text p{
+  color: var(--neutral-300);
 }

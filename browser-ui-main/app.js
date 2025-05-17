@@ -10,43 +10,46 @@ async function populate () {
 
 function populateMainUI(el) {
   const mainEl = document.querySelector("main")
+  
   el.forEach(item => {
-    mainEl.innerHTML += `
-    <article class="extension-info">
-        <section class="extension-main">
-         <img src="${item.logo}" alt="${item.name}">
-         <div class="extension-text">
-           <h3>${item.name}</h3>
-           <p>${item.description}</p>
-         </div>
-        </section>
-        <div class="switch-wrapper">
-          <button class="remove-btn">Remove</button>
-          <div class="toggle-switch active">
-           <div class="switch switch-active"></div>
-          </div>
+    const myArticle = document.createElement("article");
+    myArticle.className = "extension-info";
+    
+    myArticle.innerHTML = `
+    <section class="extension-main">
+        <img src="${item.logo}" alt="${item.name}">
+        <div class="extension-text">
+          <h3>${item.name}</h3>
+          <p>${item.description}</p>
         </div>
-    </article>
-    `
+      </section>
+      <div class="switch-wrapper">
+        <button class="remove-btn">Remove</button>
+        <div class="toggle-switch">
+          <div class="switch"></div>
+        </div>
+      </div>
+    `;
     
-    const toggleSwitches = document.querySelectorAll(".toggle-switch");
-      const switchEls = document.querySelectorAll(".switch");
+  const toggleSwitch = myArticle.querySelector(".toggle-switch");
+    const switchEl = myArticle.querySelector(".switch");
     
-    toggleSwitches.forEach(el => {
-      if (item.isActive) {
-      el.classList.add("active");
-    } else {
-      el.classList.remove("active");
+    if(item.isActive) {
+      toggleSwitch.classList.add("active");
+      switchEl.classList.add("switch-active");
     }
-    });
-    switchEls.forEach(el => {
-      if (item.isActive) {
-      el.classList.add("switch-active");
-    } else {
-      el.classList.remove("switch-active");
+    
+    switchEl.addEventListener("click", () => {
+      toggleSwitch.classList.toggle("active");
+      switchEl.classList.toggle("switch-active");
     }
-    });
+    )
+    
+    mainEl.appendChild(myArticle);
   });
 }
 
 populate();
+
+const themeToggle = document.getElementById("toggle-theme");
+the
