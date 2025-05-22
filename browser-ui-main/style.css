@@ -62,6 +62,7 @@ section{
 section h3{
   font: 700 2rem myFont;
   color: var(--neutral-900);
+  transition: all 0.3s ease-in-out;
 }
 
 section nav a{
@@ -73,13 +74,14 @@ section nav a{
   font: 500 1rem myFont;
   margin-left: 0.4em;
   border: 1px solid var(--neutral-300);
+  transition: all 0.3s ease-in-out;
 }
 
 main{
   display: grid;
   gap: 1em;
   place-items: center;
-  margin: 3em auto;
+  margin: 3em auto; 
 }
 
 .extension-info{
@@ -88,6 +90,7 @@ main{
   border-radius: 1em;
   padding: 1em 0;
   border: 1px solid var(--neutral-300);
+  transition: all 0.2s ease-in-out;
 }
 
 .extension-main{
@@ -123,6 +126,7 @@ main{
   border-radius: 1.5em;
   font: 700 0.9rem myFont;
   color: var(--neutral-700);
+  transition: all 0.2s ease-in-out;
 }
 
 .toggle-switch{
@@ -133,7 +137,7 @@ main{
   display: flex;
   align-items: center;
   padding: 0.2em;
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .switch{
@@ -150,6 +154,47 @@ main{
 
 .switch-active{
   transform: translateX(1.4em);
+}
+
+.modal{
+  font: 500 1rem myFont;
+  background-color: white;
+  width: 80%;
+  padding: 0.8em 1.2em;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+  border: none;
+}
+
+.modal::backdrop{
+  background: rgba(0, 0, 0, 0.2);
+}
+
+#btn-wrapper{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 1em auto 0;
+}
+
+#btn-wrapper button{
+  border: none;
+  padding: 1em 1.4em;
+  border-radius: 1.8em;
+  font: 600 0.85rem myFont;
+}
+
+#continue-btn{
+  color: white;
+  background-color: var(--red-500);
+}
+
+#cancel-btn{
+  color: var(--neutral-600);
+  background-color: var(--neutral-100);
 }
 /*Dark theme*/
   body.dark{

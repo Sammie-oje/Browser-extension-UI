@@ -12,13 +12,13 @@
 </head>
 <body>
   <header>
-      <img src="./assets/images/logo.svg" alt="logo">
+      <img src="./assets/images/logo.svg" alt="logo" id="logo">
       <div id="toggle-theme">
-        <img src="./assets/images/icon-moon.svg" alt="sun">
+        <img src="./assets/images/icon-moon.svg" alt="sun" id="theme-icon">
       </div>
   </header>
   
-  <section>
+  <section class="nav-section">
     <h3>
       Extensions List
     </h3>
@@ -31,6 +31,17 @@
   <main>
     
   </main>
+  <!--Modal-->
+  <dialog class="modal">
+    <p>
+      Are you sure you want to remove this extension. This action is <strong><em>irreversible</em></strong>
+    </p>
+    <div id="btn-wrapper">
+      <button id="continue-btn">Continue</button>
+      <button id="cancel-btn">Cancel</button>
+    </div>
+  </dialog>
+  
   <script src="app.js"></script>
 </body>
 </html>

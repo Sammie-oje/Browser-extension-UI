@@ -1,3 +1,4 @@
+//Fetch data from json
 async function populate () {
   const requestURL = "data.json";
   const request = new Request(requestURL);
@@ -8,6 +9,7 @@ async function populate () {
   populateMainUI(data);
 }
 
+//Populate the body
 function populateMainUI(el) {
   const mainEl = document.querySelector("main")
   
@@ -30,7 +32,7 @@ function populateMainUI(el) {
         </div>
       </div>
     `;
-    
+  
   const toggleSwitch = myArticle.querySelector(".toggle-switch");
     const switchEl = myArticle.querySelector(".switch");
     
@@ -44,6 +46,12 @@ function populateMainUI(el) {
       switchEl.classList.toggle("switch-active");
     }
     )
+    //Show modal upon clicking the "remove" button
+    const removeBtn = myArticle.querySelector(".remove-btn");
+    
+    removeBtn.addEventListener("click",() =>{
+      document.querySelector(".modal").showModal();
+    });
     
     mainEl.appendChild(myArticle);
   });
@@ -52,4 +60,42 @@ function populateMainUI(el) {
 populate();
 
 const themeToggle = document.getElementById("toggle-theme");
-the
+//Theme toggle function
+themeToggle.addEventListener("click", () =>{
+  const body = document.body;
+  const logo = document.getElementById("logo");
+  
+  const themeIcon = document.getElementById("theme-icon");
+  
+  if(body.classList.contains("dark")) {
+  body.classList.remove("dark");
+    logo.src = "./assets/images/logo.svg";
+    themeIcon.src = "./assets/images/icon-moon.svg"
+  }else{
+    body.classList.add("dark");
+    logo.src = "./assets/images/logo-dark.svg";
+    themeIcon.src = "./assets/images/icon-sun.svg";
+  }
+});
+
+function closeModal() {
+  document.querySelector(".modal").close();
+}
+
+//Close modal when "cancel" button is clicked
+const cancelBtn = document.querySelector("#cancel-btn");
+
+cancelBtn.addEventListener("click", () => {
+  closeModal();
+})
+//Remove article when "continue" button is clicked
+const continueBtn = document.querySelector("#continue-btn");
+
+continueBtn.addEventListener("click", () => {
+  closeModal();
+  const articles = document.querySelectorAll(".extension-info");
+  articles.forEach(article => {
+    article.style.transform = "translateX(30em)";
+    article.style.position = "fixed";
+  })
+})
