@@ -90,7 +90,8 @@ main{
   border-radius: 1em;
   padding: 1em 0;
   border: 1px solid var(--neutral-300);
-  transition: all 0.2s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  position: relative;
 }
 
 .extension-main{
@@ -198,7 +199,7 @@ main{
 }
 /*Dark theme*/
   body.dark{
-    background: linear-gradient(180deg, #040918 0%, #091540 100%); 
+    background: linear-gradient(180deg, #040918 0%, #091540 100%) no-repeat; 
     color: white;
   }
 

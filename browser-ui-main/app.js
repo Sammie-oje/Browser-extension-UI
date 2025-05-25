@@ -16,6 +16,7 @@ function populateMainUI(el) {
   el.forEach(item => {
     const myArticle = document.createElement("article");
     myArticle.className = "extension-info";
+    myArticle.id =  item.name;
     
     myArticle.innerHTML = `
     <section class="extension-main">
@@ -32,6 +33,19 @@ function populateMainUI(el) {
         </div>
       </div>
     `;
+    
+    const modal = document.createElement("dialog");
+    modal.className = "modal";
+      
+    modal.innerHTML = `
+    <p>
+      Are you sure you want to remove this extension. This action is <strong><em>irreversible</em></strong>
+    </p>
+    <div id="btn-wrapper">
+      <button id="continue-btn">Continue</button>
+      <button id="cancel-btn">Cancel</button>
+    </div>
+  `;
   
   const toggleSwitch = myArticle.querySelector(".toggle-switch");
     const switchEl = myArticle.querySelector(".switch");
@@ -49,10 +63,20 @@ function populateMainUI(el) {
     //Show modal upon clicking the "remove" button
     const removeBtn = myArticle.querySelector(".remove-btn");
     
-    removeBtn.addEventListener("click",() =>{
-      document.querySelector(".modal").showModal();
+    removeBtn.addEventListener("click",() => {modal.showModal()});
+    //Remove modal when the "cancel" button is clicked
+    const cancelBtn = modal.querySelector("#cancel-btn");
+    
+    cancelBtn.addEventListener("click", () => {modal.close()});
+    //Remove article element when "continue" button is clicked
+    const continueBtn = modal.querySelector("#continue-btn");
+    
+    continueBtn.addEventListener("click", () => {
+      modal.close();
+      myArticle.style.transform = "translate(-200vw, 0)";
     });
     
+    document.body.appendChild(modal);
     mainEl.appendChild(myArticle);
   });
 }
@@ -78,24 +102,4 @@ themeToggle.addEventListener("click", () =>{
   }
 });
 
-function closeModal() {
-  document.querySelector(".modal").close();
-}
-
-//Close modal when "cancel" button is clicked
-const cancelBtn = document.querySelector("#cancel-btn");
-
-cancelBtn.addEventListener("click", () => {
-  closeModal();
-})
-//Remove article when "continue" button is clicked
-const continueBtn = document.querySelector("#continue-btn");
-
-continueBtn.addEventListener("click", () => {
-  closeModal();
-  const articles = document.querySelectorAll(".extension-info");
-  articles.forEach(article => {
-    article.style.transform = "translateX(30em)";
-    article.style.position = "fixed";
-  })
-})
+//Filter logic for active and inactive extensions
